@@ -260,8 +260,10 @@ class Solr(object):
         """
         if hasattr(value, 'strftime'):
             if hasattr(value, 'hour'):
+                value = datetime(value.year,value.month,value.day,value.hour,value.minute)
                 value = value.strftime('%Y-%m-%dT%H:%M:%SZ')
             else:
+                value = datetime(value.year,value.month,value.day)
                 value = value.strftime('%Y-%m-%dT00:00:00Z')
         elif isinstance(value, bool):
             if value:
